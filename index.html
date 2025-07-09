@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Who is the Best Baobe?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f8e8e8;
+      text-align: center;
+      margin: 0;
+      padding-top: 10vh;
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #ff4d6d;
+    }
+
+    .button-container {
+      position: relative;
+      height: 300px;
+    }
+
+    button {
+      padding: 1em 2em;
+      font-size: 1.2rem;
+      margin: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      position: absolute;
+      transition: transform 0.2s ease;
+    }
+
+    #missy {
+      left: 25%;
+      top: 40%;
+      background-color: #ff85a2;
+      color: white;
+    }
+
+    #mushy {
+      left: 55%;
+      top: 40%;
+      background-color: #b2f7ef;
+      color: black;
+    }
+  </style>
+</head>
+<body>
+  <h1>Who is the best baobe?</h1>
+  <div class="button-container">
+    <button id="missy">Missy Missy</button>
+    <button id="mushy">Mushy Mushy</button>
+  </div>
+
+  <script>
+    const mushyBtn = document.getElementById('mushy');
+    const container = document.querySelector('.button-container');
+
+    container.addEventListener('mousemove', (e) => {
+      const rect = mushyBtn.getBoundingClientRect();
+      const distance = Math.hypot(
+        e.clientX - (rect.left + rect.width / 2),
+        e.clientY - (rect.top + rect.height / 2)
+      );
+
+      if (distance < 100) {
+        const maxX = container.clientWidth - mushyBtn.clientWidth;
+        const maxY = container.clientHeight - mushyBtn.clientHeight;
+
+        const newX = Math.random() * maxX;
+        const newY = Math.random() * maxY;
+
+        mushyBtn.style.left = `${newX}px`;
+        mushyBtn.style.top = `${newY}px`;
+      }
+    });
+
+    // 👇 Add this for the popup on correct click
+    document.getElementById('missy').addEventListener('click', () => {
+      alert('Correct answer ');
+    });
+  </script>
+</body>
+</html>
